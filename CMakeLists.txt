@@ -129,7 +129,9 @@ endif()
 #-----------------------------------------------------------------------------
 # libtommath
 if(WITH_LTM)
-    find_package(libtommath 1.2.0 REQUIRED)
+    if(NOT TARGET libtommath::libtommath)
+        find_package(libtommath 1.2.0 REQUIRED)
+    endif()
 
     target_compile_definitions(${PROJECT_NAME} PUBLIC LTM_DESC)
     if(MPI_PROVIDER MATCHES "LTM")
